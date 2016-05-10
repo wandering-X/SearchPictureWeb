@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.whj.dao.TestDao">
+	<insert id="addUser" parameterType="map">
+	insert into user (username,password) values(#{username},#{password})
+	</insert>
+	<select id="login" resultType="com.whj.bean.User"  parameterType="map">
+	select username,password from user where username =#{username} and password =#{password}
+	</select>
+	<select id="getAllUsers" resultMap="userList" >
+	select username,password from user
+	</select>
+	<resultMap type="com.whj.bean.User" id="userList">
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+    </resultMap>
+</mapper>
